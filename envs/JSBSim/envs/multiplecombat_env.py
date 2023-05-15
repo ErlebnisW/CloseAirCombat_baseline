@@ -2,7 +2,7 @@ import numpy as np
 from typing import Tuple, Dict, Any
 from .env_base import BaseEnv
 from ..tasks.multiplecombat_task import HierarchicalMultipleCombatShootTask, HierarchicalMultipleCombatTask, MultipleCombatTask
-
+from ..tasks.multiplecombat_vs_baseline_task import HierarchicalMultipleCombatVsBaselineTask, MultipleCombatVsBaselineTask
 
 class MultipleCombatEnv(BaseEnv):
     """
@@ -19,14 +19,23 @@ class MultipleCombatEnv(BaseEnv):
 
     def load_task(self):
         taskname = getattr(self.config, 'task', None)
-        if taskname == 'multiplecombat':
-            self.task = MultipleCombatTask(self.config)
-        elif taskname == 'hierarchical_multiplecombat':
-            self.task = HierarchicalMultipleCombatTask(self.config)
-        elif taskname == 'hierarchical_multiplecombat_shoot':
-            self.task = HierarchicalMultipleCombatShootTask(self.config)
+        if "vs_baseline" in taskname:
+            if taskname == 'multiplecombat_vs_baseline':
+                self.task = MultipleCombatVsBaselineTask(self.config)
+            elif taskname == 'hierarchical_multiplecombat_vs_baseline':
+                self.task = HierarchicalMultipleCombatVsBaselineTask(self.config)
+            else:
+                raise NotImplementedError(f"Unknown taskname: {taskname}")
+
         else:
-            raise NotImplementedError(f"Unknown taskname: {taskname}")
+            if taskname == 'multiplecombat':
+                self.task = MultipleCombatTask(self.config)
+            elif taskname == 'hierarchical_multiplecombat':
+                self.task = HierarchicalMultipleCombatTask(self.config)
+            elif taskname == 'hierarchical_multiplecombat_shoot':
+                self.task = HierarchicalMultipleCombatShootTask(self.config)
+            else:
+                raise NotImplementedError(f"Unknown taskname: {taskname}")
 
     def reset(self) -> Tuple[Dict[str, np.ndarray], Dict[str, np.ndarray]]:
         """Resets the state of the environment and returns an initial observation.

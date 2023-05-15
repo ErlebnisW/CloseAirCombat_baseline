@@ -1,5 +1,5 @@
 # task config
-task: multiplecombat
+task: hierarchical_multiplecombat_vs_baseline # 1. multiplecombat_vs_baseline 2. hierarchical_multiplecombat_vs_baseline
 
 # simulation config
 sim_freq: 60
@@ -20,9 +20,9 @@ aircraft_configs: {
     color: Red,
     model: f16,
     init_state: {
+      ic_h_sl_ft: 20000,
       ic_long_gc_deg: 120.0,
       ic_lat_geod_deg: 60.0,
-      ic_h_sl_ft: 20000,
       ic_psi_true_deg: 0.0,
       ic_u_fps: 800.0,
     },
@@ -31,9 +31,9 @@ aircraft_configs: {
     color: Red,
     model: f16,
     init_state: {
+      ic_h_sl_ft: 20000,
       ic_long_gc_deg: 120.01,
       ic_lat_geod_deg: 60.0,
-      ic_h_sl_ft: 20000,
       ic_psi_true_deg: 0.0,
       ic_u_fps: 800.0,
     },
@@ -43,8 +43,8 @@ aircraft_configs: {
     model: f16,
     init_state: {
       ic_h_sl_ft: 20000,
-      ic_lat_geod_deg: 60.05,
       ic_long_gc_deg: 120.0,
+      ic_lat_geod_deg: 60.1,
       ic_psi_true_deg: 180.0,
       ic_u_fps: 800.0,
     },
@@ -54,8 +54,8 @@ aircraft_configs: {
     model: f16,
     init_state: {
       ic_h_sl_ft: 20000,
-      ic_lat_geod_deg: 60.05,
-      ic_long_gc_deg: 120.0,
+      ic_long_gc_deg: 120.01,
+      ic_lat_geod_deg: 60.1,
       ic_psi_true_deg: 180.0,
       ic_u_fps: 800.0,
     },
