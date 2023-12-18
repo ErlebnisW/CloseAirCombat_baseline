@@ -82,6 +82,14 @@ def parse_args(args, parser):
 def main(args):
     parser = get_config()
     all_args = parse_args(args, parser)
+    
+    import json
+    import easydict
+    # with open('commandlines.json', 'w') as f:
+    #     json.dump(all_args.__dict__, f, indent=2)
+    with open('scripts/train/commandlines.json', 'r') as f:
+        all_args = json.load(f)
+    all_args = easydict.EasyDict(all_args)
 
     # seed
     np.random.seed(all_args.seed)
