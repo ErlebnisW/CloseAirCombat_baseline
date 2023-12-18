@@ -152,9 +152,10 @@ class HierarchicalMultipleCombatTask(MultipleCombatTask):
         raw_obs = self.get_obs(env, agent_id)
         input_obs = np.zeros(12)
         # (1) delta altitude/heading/velocity
-        input_obs[0] = self.norm_delta_altitude[action[0]]
-        input_obs[1] = self.norm_delta_heading[action[1]]
-        input_obs[2] = self.norm_delta_velocity[action[2]]
+        if action is not None:
+            input_obs[0] = self.norm_delta_altitude[action[0]]
+            input_obs[1] = self.norm_delta_heading[action[1]]
+            input_obs[2] = self.norm_delta_velocity[action[2]]
         # (2) ego info
         input_obs[3:12] = raw_obs[:9]
         input_obs = np.expand_dims(input_obs, axis=0)
