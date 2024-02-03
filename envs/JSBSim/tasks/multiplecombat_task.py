@@ -32,8 +32,8 @@ class MultipleCombatTask(SingleCombatTask):
 
     @property
     def num_agents(self) -> int:
-        # return 4 if not self.use_baseline else 2
-        return 2
+        return 4 if not self.config.use_baseline else 2
+        # return 2
 
     def load_variables(self):
         self.state_var = [

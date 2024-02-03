@@ -13,6 +13,7 @@ acceleration_limit_y: 10.0
 acceleration_limit_z: 10.0
 
 # aircraft config
+use_baseline: false
 aircraft_configs: {
   A0100: {
     color: Red,
